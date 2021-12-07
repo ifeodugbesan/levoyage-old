@@ -1,0 +1,18 @@
+<div class="" data-controller="tabs">
+  <h1 class="boldest text-center <%= @dark_mode ? 'grey' : 'black' %>" data-target="common.resourcesHeader">Notifications</h1>
+  <h6 class="boldest text-center mb-3 <%= @dark_mode ? 'white' : 'black' %>" data-target="common.resourcesHeader">Here is a list of your notifications.</h6>
+  <div class="container">
+    <div class="row justify-content-center">
+      <% @notifications.each_with_index do |notification, index| %>
+        <div class="col-8">
+          <%= link_to post_path(notification[:params][:object]), class: 'no-decoration' do %>
+            <div class="notification-card d-flex align-items-center p-3 <%= 'grey-background' if @dark_mode %> <%= 'border-top' unless index == 0 %>">
+              <%= cl_image_tag notification[:params][:user].avatar_key, class: 'avatar mr-3' %>
+              <p class="m-0 <%= @dark_mode ? 'white' : 'black' %>"><%= notification.to_notification.message.html_safe %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

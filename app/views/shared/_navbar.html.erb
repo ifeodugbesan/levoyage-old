@@ -5,27 +5,36 @@
         <%= link_to root_path, class: "nav-link px-0" do %>
           <%= image_tag "logo.png", class: "logo-signed-in" %>
         <% end %>
-        <span class="d-flex align-items-center">
+        <span class="d-flex align-items-center ml-3">
           <%= render 'shared/dark_mode_link' %>
-          <%= link_to "Posts", posts_path, class: "nav-link #{ @dark_mode ? 'light-grey' : 'black' }" %>
-          <%= link_to "Tips", tips_path, class: "nav-link #{ @dark_mode ? 'light-grey' : 'black' }" %>
-          <%= link_to "Resources", resources_path, class: "nav-link #{ @dark_mode ? 'light-grey' : 'black' }" %>
-          <%= link_to "Articles", articles_path, class: "nav-link #{ @dark_mode ? 'light-grey' : 'black' }" %>
+          <%= link_to "Posts", posts_path, class: "nav-link ml-sm-2 ml-md-3 px-sm-2 px-md-3 #{ @dark_mode ? 'light-grey' : 'black' }" %>
+          <%= link_to "Tips", tips_path, class: "nav-link px-sm-2 px-md-3 #{ @dark_mode ? 'light-grey' : 'black' }" %>
+          <%= link_to "Resources", resources_path, class: "nav-link px-sm-2 px-md-3 #{ @dark_mode ? 'light-grey' : 'black' }" %>
+          <%= link_to "Articles", articles_path, class: "nav-link px-sm-2 px-md-3 #{ @dark_mode ? 'light-grey' : 'black' }" %>
           <%#= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link #{ @dark_mode ? 'light-grey' : 'black' }" %>
           <%= link_to user_path(current_user) do %>
-            <%= image_tag 'nav-profile.png', width: 27 %>
+            <i class="<%= params[:controller] == 'users' && params[:action] == 'show' ? 'fas fa-user' : 'far fa-user' %> ml-3"></i>
           <% end %>
-          <i class="far fa-bell ml-1 mx-3"></i>
+          <%= link_to notifications_path do %>
+            <div class="nav-notifications position-relative">
+              <i class="<%= current_user.notifications.unread.any? ? 'fas fa-bell' : 'far fa-bell' %> ml-1 mx-3"></i>
+              <% if current_user.notifications.unread.any? %>
+                <span class="notification-icon">
+                  <%= current_user.notifications.unread.count %>
+                </span>
+              <% end %>
+            </div>
+          <% end %>
           <%= link_to conversations_path do %>
             <% if current_user.new_messages.any? %>
               <div class="nav-chat position-relative">
-                <i class="fas fa-comments"></i>
+                <i class="fas fa-comment-alt"></i>
                 <span class="notification-icon">
                   <%= current_user.new_messages.count %>
                 </span>
               </div>
             <% else %>
-              <i class="far fa-comments"></i>
+              <i class="far fa-comment-alt"></i>
             <% end %>
           <% end %>
         </span>
@@ -66,19 +75,19 @@
             </li>
             <li class="nav-item d-flex align-items-center justify-content-start pt-3 pb-2">
               <%= link_to user_path(current_user) do %>
-                <%= image_tag 'nav-profile.png', width: 27 %>
+                <i class="far fa-user"></i>
               <% end %>
               <i class="far fa-bell ml-1 mx-3"></i>
               <%= link_to conversations_path do %>
                 <% if current_user.new_messages.any? %>
                   <div class="nav-chat position-relative">
-                    <i class="fas fa-comments"></i>
+                    <i class="far fa-envelope-open"></i></i>
                     <span class="notification-icon">
                       <%= current_user.new_messages.count %>
                     </span>
                   </div>
                 <% else %>
-                  <i class="far fa-comments"></i>
+                  <i class="far fa-envelope"></i></i>
                 <% end %>
               <% end %>
             </li>
@@ -125,13 +134,13 @@
       <%= link_to conversations_path, data: { action: 'click->common#showLoader' } do %>
         <% if current_user.new_messages.any? %>
           <div class="nav-chat position-relative">
-            <i class="fas fa-comments"></i>
+            <i class="far fa-envelope-open"></i></i>
             <span class="notification-icon">
               <%= current_user.new_messages.count %>
             </span>
           </div>
         <% else %>
-          <i class="far fa-comments"></i>
+          <i class="far fa-envelope"></i></i>
         <% end %>
       <% end %>
     <% end %>

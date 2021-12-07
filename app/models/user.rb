@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :conversations, through: :messages, dependent: :destroy
+  has_many :notifications, as: :recipient
   has_one_attached :avatar
   extend FriendlyId
   friendly_id :user_username, use: :slugged

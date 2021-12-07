@@ -20,6 +20,7 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'pusher'
 gem 'pg_search'
 gem 'faker'
+gem 'noticed'
 gem 'omniauth-github'
 gem 'friendly_id', '~> 5.4.0'
 

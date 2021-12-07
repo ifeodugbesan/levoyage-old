@@ -4,6 +4,7 @@ class LikesController < ApplicationController
     @like = Like.new(post: @post, user: current_user)
     if @like.save
       render partial: 'posts/post_user', locals: { post: @post }
+      NewLikeNotification.with(object: @post, user: current_user).deliver(@post.user)
     else
       redirect_to posts_path, alert: 'Something went wrong'
     end

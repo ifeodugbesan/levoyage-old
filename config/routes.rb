@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :resources, except: [:show]
   resources :articles
+  resources :notifications, only: [:index]
   # resources :careers do
   #   resources :project_members, only: [:new, :create]
   # end

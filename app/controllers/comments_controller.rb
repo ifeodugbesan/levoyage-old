@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment.post = @post
     render partial: 'posts/modal_comment', locals: { comment: @comment } if @comment.save
     authorize @comment
+    NewCommentNotification.with(object: @post, user: current_user).deliver(@post.user)
   end
 
   def destroy

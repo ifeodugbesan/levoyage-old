@@ -1,0 +1,10 @@
+.notification-card {
+  height: 80px;
+  max-width: 800px;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  &:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+    border-radius: 2px;
+  }
+}

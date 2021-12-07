@@ -11,6 +11,12 @@
   // @include absCenter;
 }
 
+.nav-notifications {
+  .notification-icon {
+    right: 12px;
+  }
+}
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -122,8 +128,8 @@
 .notification-icon {
   font-size: 10px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -5px;
+  right: -5px;
   background: #fd1015;
   color: #FFF;
   height: 15px;
