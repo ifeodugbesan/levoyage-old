@@ -8,7 +8,7 @@
 }
 
 .navbar-container {
-  // @include absCenter;
+  @include absCenter;
 }
 
 .nav-notifications {
@@ -23,6 +23,7 @@
   z-index: 1000;
   left: 0;
   right: 0;
+  top: 0;
   background: #FFF;
 }
 

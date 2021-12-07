@@ -23,6 +23,7 @@ gem 'faker'
 gem 'noticed'
 gem 'omniauth-github'
 gem 'friendly_id', '~> 5.4.0'
+gem 'sprockets-rails', '2.3.3'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
